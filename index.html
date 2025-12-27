@@ -305,8 +305,8 @@
     </div>
 
     <script>
-        // Sample bucket list items - you can modify these!
-        let bucketListItems = [
+        // Default bucket list items
+        const defaultItems = [
             { id: 1, title: "learn all of hail purdue", completed: false, story: "", photo: "" },
             { id: 2, title: "nighttime fountain run", completed: false, story: "", photo: "" },
             { id: 3, title: "visit triple xxx", completed: false, story: "", photo: "" },
@@ -335,19 +335,35 @@
             { id: 26, title: "graduate!!!", completed: false, story: "", photo: "" }
         ];
 
-        // Load saved data from memory
-        let savedData = {};
+        let bucketListItems = [];
 
+        // Load data from localStorage
         function loadData() {
-            if (Object.keys(savedData).length > 0) {
-                bucketListItems = savedData.items || bucketListItems;
+            try {
+                const saved = localStorage.getItem('bucketListData');
+                if (saved) {
+                    bucketListItems = JSON.parse(saved);
+                } else {
+                    // First time loading - use default items
+                    bucketListItems = [...defaultItems];
+                    saveData();
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
+                bucketListItems = [...defaultItems];
             }
             renderList();
             updateStats();
         }
 
+        // Save data to localStorage
         function saveData() {
-            savedData = { items: bucketListItems };
+            try {
+                localStorage.setItem('bucketListData', JSON.stringify(bucketListItems));
+            } catch (error) {
+                console.error('Error saving data:', error);
+                alert('Unable to save data. Your browser may have storage disabled.');
+            }
         }
 
         function renderList() {
@@ -415,11 +431,18 @@
         function handlePhotoUpload(id, event) {
             const file = event.target.files[0];
             if (file) {
+                // Check file size (limit to 5MB to avoid localStorage issues)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Photo is too large. Please choose an image under 5MB.');
+                    return;
+                }
+
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const item = bucketListItems.find(i => i.id === id);
                     if (item) {
                         item.photo = e.target.result;
+                        saveData();
                     }
                 };
                 reader.readAsDataURL(file);
