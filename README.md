@@ -1,1 +1,0 @@
-# senior-bucket-list
