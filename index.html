@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senior Year Bucket List 2025-2026</title>
+    <title>SAM'S FINAL SEM @ PURDUE</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Garamond', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
             min-height: 100vh;
             padding: 2rem;
         }
@@ -47,7 +47,8 @@
             margin-bottom: 2rem;
             display: flex;
             justify-content: space-around;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            border: 2px solid #d4af37;
         }
 
         .stat {
@@ -57,7 +58,7 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #667eea;
+            color: #d4af37;
         }
 
         .stat-label {
@@ -76,20 +77,21 @@
             background: white;
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            border-left: 5px solid #667eea;
+            border-left: 5px solid #d4af37;
         }
 
         .bucket-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
         }
 
         .bucket-item.completed {
-            border-left-color: #2ecc71;
+            border-left-color: #d4af37;
             opacity: 0.85;
+            background: #fffef7;
         }
 
         .item-header {
@@ -102,7 +104,7 @@
         .checkbox {
             width: 30px;
             height: 30px;
-            border: 3px solid #667eea;
+            border: 3px solid #d4af37;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -112,8 +114,8 @@
         }
 
         .bucket-item.completed .checkbox {
-            background: #2ecc71;
-            border-color: #2ecc71;
+            background: #d4af37;
+            border-color: #d4af37;
         }
 
         .checkbox::after {
@@ -131,7 +133,7 @@
         .item-title {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #2c3e50;
+            color: #000000;
             flex: 1;
         }
 
@@ -180,7 +182,7 @@
         .file-label {
             display: inline-block;
             padding: 0.6rem 1.2rem;
-            background: #667eea;
+            background: #d4af37;
             color: white;
             border-radius: 6px;
             cursor: pointer;
@@ -190,7 +192,7 @@
         }
 
         .file-label:hover {
-            background: #5568d3;
+            background: #b8941f;
         }
 
         .btn {
@@ -204,34 +206,35 @@
         }
 
         .btn-save {
-            background: #2ecc71;
+            background: #d4af37;
             color: white;
             margin-right: 0.5rem;
         }
 
         .btn-save:hover {
-            background: #27ae60;
+            background: #b8941f;
         }
 
         .btn-cancel {
-            background: #e74c3c;
+            background: #000000;
             color: white;
         }
 
         .btn-cancel:hover {
-            background: #c0392b;
+            background: #1a1a1a;
         }
 
         .add-item-section {
             background: white;
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
             margin-bottom: 2rem;
+            border: 2px solid #d4af37;
         }
 
         .add-item-section h2 {
-            color: #2c3e50;
+            color: #000000;
             margin-bottom: 1rem;
         }
 
@@ -245,13 +248,13 @@
         }
 
         .btn-add {
-            background: #667eea;
+            background: #d4af37;
             color: white;
             width: 100%;
         }
 
         .btn-add:hover {
-            background: #5568d3;
+            background: #b8941f;
         }
 
         @media (max-width: 768px) {
@@ -294,7 +297,7 @@
 
         <div class="add-item-section">
             <h2>Add New Bucket List Item</h2>
-            <input type="text" id="newItemInput" placeholder="What do you want to accomplish this year?" />
+            <input type="text" id="newItemInput" placeholder="what to do during my final semester at purdue" />
             <button class="btn btn-add" onclick="addNewItem()">Add to List</button>
         </div>
 
@@ -304,16 +307,32 @@
     <script>
         // Sample bucket list items - you can modify these!
         let bucketListItems = [
-            { id: 1, title: "Attend a Purdue football game at Ross-Ade Stadium", completed: false, story: "", photo: "" },
-            { id: 2, title: "Get coffee at every cafe on campus", completed: false, story: "", photo: "" },
-            { id: 3, title: "Take a photo at the Purdue Bell Tower", completed: false, story: "", photo: "" },
-            { id: 4, title: "Attend a career fair and talk to 10+ companies", completed: false, story: "", photo: "" },
-            { id: 5, title: "Go to Breakfast Club", completed: false, story: "", photo: "" },
-            { id: 6, title: "Study abroad or take a spring break trip", completed: false, story: "", photo: "" },
-            { id: 7, title: "Complete a personal coding project", completed: false, story: "", photo: "" },
-            { id: 8, title: "Volunteer in the community", completed: false, story: "", photo: "" },
-            { id: 9, title: "Attend senior week events", completed: false, story: "", photo: "" },
-            { id: 10, title: "Walk across the stage at graduation", completed: false, story: "", photo: "" }
+            { id: 1, title: "learn all of hail purdue", completed: false, story: "", photo: "" },
+            { id: 2, title: "nighttime fountain run", completed: false, story: "", photo: "" },
+            { id: 3, title: "visit triple xxx", completed: false, story: "", photo: "" },
+            { id: 4, title: "ride the boilermaker special", completed: false, story: "", photo: "" },
+            { id: 5, title: "attend a play/musical at elliott", completed: false, story: "", photo: "" },
+            { id: 6, title: "visit all of the tunnels", completed: false, story: "", photo: "" },
+            { id: 7, title: "sled on slayter", completed: false, story: "", photo: "" },
+            { id: 8, title: "great indoorsmen", completed: false, story: "", photo: "" },
+            { id: 9, title: "sunrise in the jedi room", completed: false, story: "", photo: "" },
+            { id: 10, title: "rock climb at corec", completed: false, story: "", photo: "" },
+            { id: 11, title: "visit the dining courts", completed: false, story: "", photo: "" },
+            { id: 12, title: "rock climb at corec", completed: false, story: "", photo: "" },
+            { id: 13, title: "bowl in the union", completed: false, story: "", photo: "" },
+            { id: 14, title: "attend purdue vs iu game", completed: false, story: "", photo: "" },
+            { id: 15, title: "put a bike in a tree", completed: false, story: "", photo: "" },
+            { id: 16, title: "go back to honors north", completed: false, story: "", photo: "" },
+            { id: 17, title: "go to brunos pizza", completed: false, story: "", photo: "" },
+            { id: 18, title: "try nine irsh", completed: false, story: "", photo: "" },
+            { id: 19, title: "midnight famous franks", completed: false, story: "", photo: "" },
+            { id: 20, title: "go to hort park at sunset", completed: false, story: "", photo: "" },
+            { id: 21, title: "hillenbrunch", completed: false, story: "", photo: "" },
+            { id: 22, title: "get a copy of the exponent", completed: false, story: "", photo: "" },
+            { id: 23, title: "rock climb at corec", completed: false, story: "", photo: "" },
+            { id: 24, title: "have a beer in beering", completed: false, story: "", photo: "" },
+            { id: 25, title: "walk under the bell tower", completed: false, story: "", photo: "" },
+            { id: 26, title: "graduate!!!", completed: false, story: "", photo: "" }
         ];
 
         // Load saved data from memory
